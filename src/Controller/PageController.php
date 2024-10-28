@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Entity\Team;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,6 +59,13 @@ class PageController extends AbstractController
         $repository = $doctrine->getRepository(Team::class);
         $team = $repository->findAll();
         return $this->render('partials/_team.html.twig',compact('team'));
+    }
+
+    public function productTemplate(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Product::class);
+        $product = $repository->findAll();
+        return $this->render('partials/_product.html.twig',compact('product'));
     }
 
 
